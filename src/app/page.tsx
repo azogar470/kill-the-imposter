@@ -111,16 +111,9 @@ export default function LandingPage() {
       <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-12 relative z-10 flex flex-col justify-center items-center">
         {/* Title */}
         <div className="text-center mb-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-3 border-black bg-white shadow-flat text-xs font-bold uppercase tracking-wider text-black mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-black" />
-            <span>INVESTIGATIVE CONSOLE</span>
-          </div>
           <h1 className="pixel-title text-4xl sm:text-5xl font-extrabold text-black mb-4">
             KILL THE IMPOSTER
           </h1>
-          <p className="text-sm sm:text-base text-black rounded-text font-bold leading-relaxed max-w-xl mx-auto">
-            Artists collaborate with limited ink to draw a secret word. Expose the hidden imposter before they escape!
-          </p>
         </div>
 
         {/* Unified Portal Grid */}
@@ -268,45 +261,6 @@ export default function LandingPage() {
                   }
                 </button>
               </form>
-            </div>
-          </div>
-        </div>
-
-        {/* Guidelines section */}
-        <div className="w-full max-w-4xl pt-8 border-t-3 border-black">
-          <div className="text-center mb-8">
-            <h3 className="pixel-title text-lg font-bold text-black">CASE PROTOCOLS</h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass-panel p-6 border-3 border-black">
-              <div className="w-10 h-10 rounded-xl border-3 border-black bg-white flex items-center justify-center text-black mb-4 shadow-flat">
-                <Eye className="w-5 h-5 text-black" />
-              </div>
-              <h4 className="font-bold text-black text-base mb-2">1. Receive Word Dossier</h4>
-              <p className="text-xs text-black leading-relaxed">
-                Artists get the secret word; the imposter only gets the category. Your goal is to blend in or expose suspects.
-              </p>
-            </div>
-
-            <div className="glass-panel p-6 border-3 border-black">
-              <div className="w-10 h-10 rounded-xl border-3 border-black bg-[#FCE1A8] flex items-center justify-center text-black mb-4 shadow-flat">
-                <Palette className="w-5 h-5 text-black" />
-              </div>
-              <h4 className="font-bold text-black text-base mb-2">2. Limited Ink Drawing</h4>
-              <p className="text-xs text-black leading-relaxed">
-                Draw sequentially on the shared canvas. Ink depletes with movement, preventing anyone from drawing too much!
-              </p>
-            </div>
-
-            <div className="glass-panel p-6 border-3 border-black">
-              <div className="w-10 h-10 rounded-xl border-3 border-black bg-[#FADCC8] flex items-center justify-center text-black mb-4 shadow-flat">
-                <ShieldAlert className="w-5 h-5 text-black" />
-              </div>
-              <h4 className="font-bold text-black text-base mb-2">3. Expose the Imposter</h4>
-              <p className="text-xs text-black leading-relaxed">
-                Examine the collaborative masterwork and vote out the imposter. If they bypass detection, you lose!
-              </p>
             </div>
           </div>
         </div>
