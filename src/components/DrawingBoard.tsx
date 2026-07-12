@@ -113,6 +113,9 @@ export const DrawingBoard: React.FC<DrawingBoardProps> = ({
 
   const handleStartDraw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isMyTurn || inkRemaining <= 0) return;
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     setIsDrawing(true);
     const pt = getCoordinates(e);
     setCurrentPoints([pt]);
@@ -121,6 +124,9 @@ export const DrawingBoard: React.FC<DrawingBoardProps> = ({
 
   const handleMoveDraw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDrawing || !isMyTurn || inkRemaining <= 0) return;
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     const pt = getCoordinates(e);
 
     const lastPt = currentPoints[currentPoints.length - 1];
@@ -130,7 +136,7 @@ export const DrawingBoard: React.FC<DrawingBoardProps> = ({
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < 2) return;
 
-      const cost = dist * 0.08;
+      const cost = dist * 0.55;
       const nextInk = Math.max(0, inkRemaining - cost);
       setInkRemaining(nextInk);
 

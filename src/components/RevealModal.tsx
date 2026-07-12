@@ -14,6 +14,7 @@ interface RevealModalProps {
   category?: string;
   players: Player[];
   isHost: boolean;
+  isWinner?: boolean;
   onPlayAgain: () => void;
   onBackToHome: () => void;
 }
@@ -26,6 +27,7 @@ export const RevealModal: React.FC<RevealModalProps> = ({
   category,
   players,
   isHost,
+  isWinner = false,
   onPlayAgain,
   onBackToHome
 }) => {
@@ -35,6 +37,8 @@ export const RevealModal: React.FC<RevealModalProps> = ({
 
   useEffect(() => {
     soundEffects.playVictory();
+
+    if (!isWinner) return;
 
     const duration = 4 * 1000;
     const end = Date.now() + duration;
@@ -61,7 +65,7 @@ export const RevealModal: React.FC<RevealModalProps> = ({
     };
 
     frame();
-  }, []);
+  }, [isWinner]);
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">

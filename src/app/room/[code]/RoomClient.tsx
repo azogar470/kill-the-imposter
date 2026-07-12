@@ -87,14 +87,29 @@ export const RoomClient: React.FC<RoomClientProps> = ({ code }) => {
       } catch {}
     };
 
-    eventSource.onerror = () => {
-      // EventSource will automatically retry connection
-    };
-
     return () => {
       eventSource.close();
     };
   }, [code]);
+
+  // Realtime Polling fallback to guarantee state updates when drawing/voting
+  useEffect(() => {
+    if (!code) return;
+    if (!room || (room.phase !== 'DRAWING' && room.phase !== 'VOTING')) return;
+
+    const pollInterval = setInterval(() => {
+      fetch(`/api/room/${code}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.room) {
+            setRoom(data.room);
+          }
+        })
+        .catch(() => {});
+    }, 1000);
+
+    return () => clearInterval(pollInterval);
+  }, [code, room?.phase]);
 
   // Game Action dispatcher helper
   const sendRoomAction = useCallback(async (action: string, payload: Record<string, unknown> = {}) => {
@@ -281,6 +296,7 @@ export const RoomClient: React.FC<RoomClientProps> = ({ code }) => {
             category={room.category}
             players={room.players}
             isHost={isHost}
+            isWinner={(myPlayer?.role === 'ARTIST' && room.winner === 'ARTISTS') || (myPlayer?.role === 'IMPOSTER' && room.winner === 'IMPOSTER')}
             onPlayAgain={handlePlayAgain}
             onBackToHome={handleLeaveRoom}
           />
