@@ -1,26 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@400;600;700&family=Outfit:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette - Neo-Brutalist Sticker Aesthetic */
+  --bg-light: #f5f5f7;
+  --peach-pill: #FADCC8;
+  --status-yellow: #FCE1A8;
+  --status-shadow: #e09f25;
+  --finish-cyan: #38C8FF;
+  --roster-teal: #A1F2EC;
+  --pink-shadow: #ff0055;
+  
+  --text-dark: #000000;
+  --text-secondary-dark: #222222;
+  --text-light: #ffffff;
+  
+  --border-thick: 3px solid #000000;
+  --shadow-flat: 4px 4px 0px #000000;
+  --shadow-flat-lg: 6px 6px 0px #000000;
+  
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-rounded: 'Fredoka', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Translucent geometric watermark background (circles and squares) */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.02) 20%, transparent 20.2%),
+    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.02) 15%, transparent 15.2%),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%);
+  background-size: 80px 80px, 120px 120px, 40px 40px, 40px 40px;
+  background-position: 0 0, 40px 40px, 0 0, 0 0;
+}
+
+/* Neo-Brutalist Sticker Box Panel */
+.glass-panel {
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-flat);
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  position: relative;
+  color: var(--text-dark) !important;
+}
+
+.glass-panel:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.glass-panel-glow {
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-flat-lg);
+  border-radius: 24px;
+}
+
+/* Sticker buttons */
+.btn {
+  background: #ffffff;
+  border: var(--border-thick) !important;
+  box-shadow: var(--shadow-flat);
+  color: var(--text-dark) !important;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Button overrides to ensure high contrast text */
+.btn-primary, .btn-cyan, .btn-secondary, .btn-pink, .btn-outline, .btn-hollow {
+  background: #ffffff !important;
+  color: var(--text-dark) !important;
+  border: var(--border-thick) !important;
+  box-shadow: var(--shadow-flat) !important;
+}
+
+.btn-primary:hover, .btn-cyan:hover, .btn-secondary:hover, .btn-pink:hover {
+  background: #f0f0f5 !important;
+}
+
+/* Inputs */
+.input-field {
+  background: #ffffff !important;
+  border: var(--border-thick) !important;
+  border-radius: 9999px !important;
+  color: var(--text-dark) !important;
+  font-family: var(--font-rounded) !important;
+  font-weight: 600 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input-field:focus {
+  box-shadow: var(--shadow-flat) !important;
+}
+
+.input-field::placeholder {
+  color: #777777 !important;
+}
+
+/* Text styles */
+h1, h2, h3, h4, h5, h6, span, p, label {
+  color: var(--text-dark) !important;
+}
+
+.text-white, .text-\[var\(--text-secondary\)\], .text-\[var\(--text-muted\)\], .text-slate-400, .text-gray-400 {
+  color: var(--text-dark) !important;
+}
+
+/* Badges */
+.badge {
+  border: var(--border-thick) !important;
+  background: #ffffff !important;
+  color: var(--text-dark) !important;
+  font-weight: 700 !important;
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Pixel and rounded classes */
+.pixel-title {
+  font-family: var(--font-pixel);
+  color: var(--text-dark) !important;
+}
+
+.rounded-text {
+  font-family: var(--font-rounded);
+}
+
+/* Current Word Peach Pill Badge */
+.peach-pill-badge {
+  background-color: var(--peach-pill) !important;
+  border: var(--border-thick);
+  border-radius: 9999px;
+  padding: 8px 24px;
+  font-family: var(--font-rounded);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-dark) !important;
+}
+
+/* Status Drawing Badge */
+.status-badge-drawing {
+  background-color: var(--status-yellow) !important;
+  border: var(--border-thick) !important;
+  box-shadow: 4px 4px 0px var(--status-shadow) !important;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-family: var(--font-rounded);
+  font-weight: 900;
+  font-size: 18px;
+  color: #bd00ff !important; /* Bold marker pinkish purple */
+}
+
+/* Finish Button Cyan */
+.btn-finish-cyan {
+  background-color: var(--finish-cyan) !important;
+  border: var(--border-thick) !important;
+  box-shadow: var(--shadow-flat) !important;
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--text-light) !important;
+  text-shadow: 2px 2px 0px var(--pink-shadow);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-finish-cyan:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+.btn-finish-cyan:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+/* Roster container teal card */
+.roster-container {
+  background-color: var(--roster-teal) !important;
+  border: var(--border-thick) !important;
+  box-shadow: var(--shadow-flat) !important;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.roster-pill-btn {
+  background-color: #ffffff !important;
+  border: var(--border-thick) !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--text-dark) !important;
+  text-align: center;
+  user-select: none;
+}
+
+/* Canvas board container */
+.neo-canvas-wrapper {
+  background-color: #ffffff;
+  border: var(--border-thick);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Clean up animation glows to keep it solid */
+.tech-corners::before, .tech-corners::after {
+  display: none !important;
+}
+.scanlines::after {
+  display: none !important;
+}
+.pulse-border-cyan, .pulse-border-pink {
+  animation: none !important;
 }
